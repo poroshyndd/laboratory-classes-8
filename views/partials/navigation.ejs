@@ -11,13 +11,13 @@
     </li>
     <% }); %> <% } %>
     <li class="navigation__item navigation__cart">
-      Cart
-      <img
-        src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/shopping-cart.svg"
-        alt="Cart"
-        class="navigation__icon"
-      />
+  <a href="/cart">
+    <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/shopping-cart.svg" alt="Cart" class="navigation__cart" />
+    <% if (cartCount > 0) { %>
       <span class="navigation__badge"><%= cartCount %></span>
-    </li>
+    <% } %>
+  </a>
+</li>
+
   </ul>
 </nav>

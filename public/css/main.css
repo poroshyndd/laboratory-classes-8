@@ -78,7 +78,7 @@ main {
   padding: 0.2rem 0.4rem;
   border-radius: 50%;
   border: 1px solid red;
-  display: none;
+  display: inline-block;
   min-width: 1rem;
   text-align: center;
 }
@@ -181,4 +181,45 @@ main {
   font-size: 1.2rem;
   font-weight: 700;
   color: #4caf50;
+}
+
+.card__link {
+max-height: 45px;
+display: inline-block;
+padding: 0.75rem 1.5rem;
+background-color: #4caf50;
+color: white;
+border: none;
+border-radius: 0.3rem;
+cursor: pointer;
+font-size: 1.1rem;
+transition: background-color 0.3s ease, transform 0.2s ease;
+text-decoration: none;
+margin-right: 1rem;
+}
+.card__link:hover {
+background-color: #388e3c;
+transform: translateY(-2px);
+}
+.card__link:active {
+background-color: #2e7d32;
+transform: translateY(0);
+}
+.card__button {
+padding: 0.75rem 1.5rem;
+background-color: #dc3545;
+color: white;
+border: none;
+border-radius: 0.3rem;
+cursor: pointer;
+font-size: 1.1rem;
+transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.card__button:hover {
+background-color: #c82333;
+transform: translateY(-2px);
+}
+.card__button:active {
+background-color: #b21f2d;
+transform: translateY(0);
 }

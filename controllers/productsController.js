@@ -1,5 +1,4 @@
 const Product = require("../models/Product");
-
 const { MENU_LINKS } = require("../constants/navigation");
 const { STATUS_CODE } = require("../constants/statusCode");
 
@@ -59,6 +58,17 @@ exports.getProductView = async (request, response) => {
     product,
     cartCount,
   });
+};
+
+exports.addProduct = async (req, res) => {
+  const { name, description, price } = req.body;
+
+  if (!name || !description || !price) {
+    return res.status(400).send('Missing product data');
+  }
+
+  await Product.add({ name, description, price });
+  res.redirect(302, '/products/new');
 };
 
 exports.deleteProduct = async (request, response) => {

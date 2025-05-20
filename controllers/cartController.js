@@ -23,3 +23,7 @@ exports.addProductToCart = async (req, res) => {
     res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({ error: "Something went wrong" });
   }
 };
+
+exports.getProductsCount = async () => {
+  return await Cart.getProductsQuantity();
+};

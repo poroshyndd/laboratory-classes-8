@@ -12,18 +12,27 @@
 </div>
 <script>
   function deleteProduct(name) {
-    if (!confirm(`Are you sure you want to remove ${name}?`)) {
+    if (!name) {
+      alert("Brak nazwy produktu do usunięcia.");
       return;
     }
 
-    fetch(`/products/${name}`, {
-      method: "DELETE",
-    }).then((response) => {
+    if (!confirm(`Are you sure you want to remove ${name}?`)) return;
+
+    fetch(`/products/${encodeURIComponent(name)}`, {
+      method: "DELETE"
+    })
+    .then((response) => {
       if (response.ok) {
-        window.location.reload();
+        window.location.href = "/products";
       } else {
         alert("Error while removing product.");
       }
+    })
+    .catch((err) => {
+      console.error("Fetch error:", err);
+      alert("Request failed.");
     });
   }
 </script>
+

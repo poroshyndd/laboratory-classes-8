@@ -1,5 +1,5 @@
 const { getDatabase } = require("../database");
-const Cart = require("./Cart"); 
+const Cart = require("./Cart");
 
 const COLLECTION_NAME = "products";
 
@@ -14,8 +14,7 @@ class Product {
     const db = getDatabase();
 
     try {
-      const products = await db.collection(COLLECTION_NAME).find({}).toArray();
-      return products;
+      return await db.collection(COLLECTION_NAME).find({}).toArray();
     } catch (error) {
       console.error("Error occurred while searching for all products");
       return [];
@@ -36,11 +35,7 @@ class Product {
     const db = getDatabase();
 
     try {
-      const searchedProduct = await db
-        .collection(COLLECTION_NAME)
-        .findOne({ name });
-
-      return searchedProduct;
+      return await db.collection(COLLECTION_NAME).findOne({ name });
     } catch (error) {
       console.error("Error occurred while searching product");
       return null;
@@ -52,9 +47,10 @@ class Product {
 
     try {
       await db.collection(COLLECTION_NAME).deleteOne({ name });
-      Cart.deleteProductByName(name); 
+      await Cart.deleteProductByName(name); 
     } catch (error) {
       console.error("Error occurred while deleting product:", error);
+      throw error; 
     }
   }
 
@@ -62,15 +58,13 @@ class Product {
     const db = getDatabase();
 
     try {
-      const lastAddedProduct = await db
+      const [last] = await db
         .collection(COLLECTION_NAME)
         .find({})
         .sort({ _id: -1 })
         .limit(1)
-        .toArray()
-        .then((docs) => docs[0]);
-
-      return lastAddedProduct;
+        .toArray();
+      return last;
     } catch (error) {
       console.error("Error occurred while searching for last product");
       return null;

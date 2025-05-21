@@ -16,10 +16,14 @@ exports.addProductToCart = async (req, res) => {
   }
 
   try {
-    Cart.add(product); 
+    await Cart.add(product); 
     res.sendStatus(STATUS_CODE.OK);
   } catch (error) {
     console.error("Error while adding to cart:", error);
     res.status(STATUS_CODE.INTERNAL_SERVER_ERROR).json({ error: "Something went wrong" });
   }
+};
+
+exports.getProductsCount = async () => {
+  return await Cart.getProductsQuantity();
 };

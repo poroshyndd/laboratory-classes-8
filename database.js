@@ -21,3 +21,4 @@ const getDatabase = () => {
 };
 
 module.exports = { mongoConnect, getDatabase };
+
